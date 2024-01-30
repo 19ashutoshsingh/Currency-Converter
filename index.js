@@ -7,6 +7,16 @@ const toCurr = document.querySelector(".to select")
 const msg = document.querySelector(".msg")
 
 
+const fetchInitialConversionRate = async () => {
+    let initialURL = `${base_URL}/usd/inr.json`;
+    let initialResponse = await fetch(initialURL);
+    let initialData = await initialResponse.json();
+    let initialRate = initialData["inr"];
+    msg.innerHTML = `1 USD = ${initialRate} INR`;
+};
+fetchInitialConversionRate();
+
+
 for(let select of dropdowns){
     for(currCode in countryList){
         let newOption = document.createElement("option");
